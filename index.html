@@ -1,0 +1,535 @@
+<style>
+:root{
+  --navy:#0E3C66;--navy2:#061626;--navy3:#040F1E;
+  --blue:#2078bd;--bluel:#2d8fd4;
+  --gold:#f1d400;--gold2:#e8c900;
+  --w100:#fff;--w80:rgba(255,255,255,.80);--w60:rgba(255,255,255,.60);
+  --w30:rgba(255,255,255,.30);--w16:rgba(255,255,255,.16);
+  --w10:rgba(255,255,255,.10);--w06:rgba(255,255,255,.06);
+  --red:#DC2626;--ora:#EA580C;--grn:#16A34A;
+  --border-light:rgba(255,255,255,.14);
+  --border-dark:rgba(14,60,102,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Montserrat','Open Sans',sans-serif;color:#1A1D23;background:#fff;font-size:14px;line-height:1.6}
+
+/* ── NAV ── */
+nav{background:var(--navy3);border-bottom:2px solid var(--gold);display:flex;align-items:stretch;position:sticky;top:0;z-index:100}
+.nav-brand{padding:0 22px;display:flex;align-items:center;border-right:1px solid rgba(255,255,255,.08);font-weight:900;font-size:17px;color:#fff;letter-spacing:1px;font-family:'Montserrat',sans-serif}
+.nav-brand span{color:var(--gold)}
+.nav-links{display:flex;flex-wrap:wrap}
+.nav-links a{color:var(--w60);padding:14px 15px;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;text-decoration:none;white-space:nowrap}
+.nav-links a:hover,.nav-links a.on{color:#fff;border-bottom-color:var(--gold)}
+
+/* ── HERO ── */
+.hero{position:relative;background:linear-gradient(150deg,var(--navy3) 0%,#0A2848 35%,var(--navy) 60%,#1560a0 82%,var(--blue) 100%);overflow:hidden;padding:80px 40px 70px}
+.hero-geo{position:absolute;inset:0;pointer-events:none}
+.hero-arc1{position:absolute;top:-280px;right:-280px;width:900px;height:900px;border-radius:50%;border:1px solid rgba(255,255,255,.06)}
+.hero-arc2{position:absolute;top:-160px;right:-160px;width:640px;height:640px;border-radius:50%;border:1px solid rgba(255,255,255,.04)}
+.hero-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.045) 1px,transparent 1px);background-size:38px 38px;mask-image:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(0,0,0,.5),transparent)}
+.hero-streak{position:absolute;inset:0;background:linear-gradient(108deg,transparent 0%,transparent 44%,rgba(255,255,255,.02) 45%,rgba(255,255,255,.02) 47%,transparent 48%,transparent 100%)}
+.hero-goldline{position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold) 25%,var(--gold) 75%,transparent);opacity:.45}
+.hero-inner{position:relative;z-index:2;max-width:900px;margin:0 auto;text-align:center}
+.hero-pill{display:inline-flex;align-items:center;gap:10px;background:rgba(241,212,0,.12);border:1px solid rgba(241,212,0,.3);border-radius:999px;padding:7px 20px;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:28px}
+.hero-pill-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.hero h1{font-size:clamp(32px,4.5vw,58px);font-weight:900;line-height:1.05;letter-spacing:-1.5px;color:#fff;margin-bottom:18px}
+.hero h1 .gold{color:var(--gold)}
+.hero p{font-size:15px;line-height:1.75;color:var(--w80);max-width:600px;margin:0 auto 36px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.chip{font-size:11px;font-weight:700;padding:5px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.2);color:var(--w80)}
+.chip.hl{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+
+/* ── METRICS STRIP ── */
+.mstrip{background:#0a2038;display:grid;grid-template-columns:repeat(4,1fr);border-bottom:2px solid var(--gold)}
+.mi{padding:20px;text-align:center;border-right:1px solid rgba(255,255,255,.07)}
+.mi:last-child{border-right:none}
+.mi-num{font-size:26px;font-weight:900;line-height:1;font-family:'Montserrat',sans-serif}
+.mi-num.r{color:#F87171}.mi-num.y{color:var(--gold)}.mi-num.g{color:#4ADE80}
+.mi-lbl{font-size:10px;color:rgba(255,255,255,.4);margin-top:5px;font-weight:600;letter-spacing:.5px}
+
+/* ── SECTION BASE ── */
+.sec{padding:56px 40px;border-bottom:1px solid rgba(14,60,102,.1)}
+.sec.dark{background:linear-gradient(135deg,var(--navy3) 0%,#0A2848 100%);color:#fff}
+.sec.light{background:#F7F9FC}
+.eyebrow{font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+.sec.dark .eyebrow{color:var(--gold)}
+.sec-h{font-size:20px;font-weight:900;color:var(--navy);margin-bottom:6px;letter-spacing:-.3px}
+.sec.dark .sec-h{color:#fff}
+.sec-sub{font-size:13px;color:#6B7280;margin-bottom:32px;max-width:580px;line-height:1.6}
+.sec.dark .sec-sub{color:var(--w60)}
+
+/* ── SCORE CARDS ── */
+.score-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-bottom:28px}
+.sc{background:#fff;border:1px solid var(--border-dark);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:14px}
+.sc-ring{width:48px;height:48px;flex-shrink:0;position:relative}
+.sc-ring svg{width:48px;height:48px;transform:rotate(-90deg)}
+.sc-ring .trk{fill:none;stroke:#EEF0F3;stroke-width:5}
+.sc-ring .arc{fill:none;stroke-width:5;stroke-linecap:round}
+.sc-ring .val{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;font-family:'Montserrat',sans-serif}
+.sc-name{font-size:12px;font-weight:700;margin-bottom:2px;color:var(--navy)}
+.sc-note{font-size:11px;color:#6B7280}
+
+/* ── ALERT CARDS ── */
+.alerts{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.al{border-radius:12px;padding:16px 18px;border-left:4px solid}
+.al.crit{background:#FEF2F2;border-color:var(--red)}.al.crit h4{color:var(--red)}
+.al.warn{background:#FFF7ED;border-color:var(--ora)}.al.warn h4{color:var(--ora)}
+.al.good{background:#F0FDF4;border-color:var(--grn)}.al.good h4{color:var(--grn)}
+.al h4{font-size:12px;font-weight:800;margin-bottom:5px}
+.al p{font-size:12px;color:#6B7280;line-height:1.5}
+.al-tag{display:inline-block;font-size:10px;font-weight:800;padding:2px 8px;border-radius:8px;margin-bottom:6px;letter-spacing:.5px}
+.al-tag.r{background:#FEE2E2;color:var(--red)}
+.al-tag.o{background:#FED7AA;color:var(--ora)}
+.al-tag.g{background:#DCFCE7;color:var(--grn)}
+
+/* ── KW TABLE ── */
+.kw-tbl{width:100%;border-collapse:collapse;font-size:12px}
+.kw-tbl th{background:var(--navy);color:#fff;padding:10px 13px;text-align:left;font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase}
+.kw-tbl td{padding:9px 13px;border-bottom:1px solid rgba(14,60,102,.08)}
+.kw-tbl tr:hover td{background:#EFF6FF}
+.stars{color:var(--gold);font-size:13px;letter-spacing:-1px}
+.tag{display:inline-block;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700}
+.tag.a{background:#DCFCE7;color:#166534}.tag.m{background:#FEF9C3;color:#854D0E}
+.tag.b{background:#FEE2E2;color:#991B1B}.tag.n{background:#F3F4F6;color:#6B7280}
+
+/* ── COMP CARDS ── */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.cc{background:rgba(255,255,255,.08);border:1px solid var(--border-light);border-radius:14px;padding:18px}
+.cc h4{font-size:13px;font-weight:800;color:#fff;margin-bottom:4px}
+.cc p{font-size:11px;color:var(--w60);margin-bottom:12px;line-height:1.5}
+.threat{display:inline-block;font-size:10px;font-weight:800;padding:3px 10px;border-radius:8px;letter-spacing:.3px}
+.threat.a{background:rgba(220,38,38,.2);color:#FCA5A5}
+.threat.m{background:rgba(234,179,8,.15);color:#FDE68A}
+.threat.b{background:rgba(22,163,74,.15);color:#86EFAC}
+
+/* ── PLAN INTRO ── */
+.plan-intro{background:linear-gradient(135deg,var(--navy3) 0%,#0A2848 100%);color:#fff;padding:56px 40px 40px;border-bottom:2px solid var(--gold)}
+
+/* ── STEPS ── */
+.steps{display:grid;grid-template-columns:repeat(5,1fr);background:#fff}
+.step{padding:24px 18px;border-right:1px solid rgba(14,60,102,.1);display:flex;flex-direction:column;gap:8px;transition:background .2s}
+.step:hover{background:#F0F7FF}
+.step:last-child{border-right:none}
+.step-num{font-size:10px;font-weight:800;letter-spacing:1.5px;color:var(--blue);font-family:'Montserrat',sans-serif}
+.step-icon{font-size:22px;color:var(--navy)}
+.step-title{font-size:13px;font-weight:800;color:var(--navy)}
+.step-desc{font-size:11px;color:#6B7280;line-height:1.55}
+
+/* ── ROADMAP ── */
+.rm-wrap{overflow-x:auto;border-top:1px solid rgba(14,60,102,.1)}
+.rm{width:100%;border-collapse:collapse;font-size:11px;min-width:640px}
+.rm th{background:var(--navy);color:#fff;padding:10px 13px;text-align:center;font-weight:800;font-size:10px;letter-spacing:.8px;text-transform:uppercase}
+.rm th:first-child{text-align:left;min-width:160px}
+.rm td{padding:9px 12px;border-bottom:1px solid rgba(14,60,102,.08);border-right:1px solid rgba(14,60,102,.06);text-align:center;color:#6B7280}
+.rm td:first-child{font-weight:700;color:var(--navy);text-align:left;background:#fff}
+.rm tr:last-child td{border-bottom:none}
+.done{background:var(--navy);color:#fff;border-radius:4px;padding:2px 8px;font-size:10px;font-weight:700}
+.act{background:#DBEAFE;color:#1E40AF;border-radius:4px;padding:2px 8px;font-size:10px;font-weight:700}
+.low{background:#F3F4F6;color:#9CA3AF;border-radius:4px;padding:2px 8px;font-size:10px}
+
+/* ── ROI TABLE ── */
+.roi-tbl{width:100%;border-collapse:collapse;font-size:11px;min-width:700px}
+.roi-tbl th{background:var(--navy);color:#fff;padding:9px 12px;text-align:center;font-weight:800;font-size:10px;letter-spacing:.5px;text-transform:uppercase;border-right:1px solid rgba(255,255,255,.12)}
+.roi-tbl th:first-child{text-align:left;border-right:1px solid rgba(255,255,255,.12)}
+.roi-tbl td{padding:8px 12px;border-bottom:1px solid rgba(14,60,102,.08);border-right:1px solid rgba(14,60,102,.07);text-align:center}
+.roi-tbl td:first-child{text-align:left;font-weight:600;color:var(--navy);border-right:1px solid rgba(14,60,102,.1)}
+.roi-tbl tr:hover td{background:#F0F7FF}
+.roi-tbl .sub-head td{background:#EFF6FF;font-size:10px;font-weight:800;color:var(--blue);letter-spacing:1px;text-align:left;padding:6px 12px}
+.roi-tbl .avg-pos td{background:rgba(241,212,0,.15);font-weight:800}
+.roi-tbl .avg-pos td:first-child{color:var(--navy)}
+.roi-tbl .avg-neg td{background:rgba(220,38,38,.08);font-weight:800}
+.roi-tbl .avg-neg td:first-child{color:var(--red)}
+.pos{color:var(--grn);font-weight:700}.neg{color:var(--red);font-weight:700}
+
+/* ── ADS CARDS ── */
+.ads-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.ac{background:#fff;border:1px solid var(--border-dark);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.ac-head{background:var(--navy);color:#fff;padding:12px 16px;font-size:13px;font-weight:800;font-family:'Montserrat',sans-serif}
+.ac-body{padding:14px 16px;flex:1;display:flex;flex-direction:column;gap:0}
+.ac-row{display:flex;justify-content:space-between;padding:5px 0;font-size:12px;border-bottom:1px solid rgba(14,60,102,.07)}
+.ac-row:last-of-type{border-bottom:none}
+.ac-row .lbl{color:#6B7280;font-weight:500}
+.ac-row .val{font-weight:800;color:var(--navy)}
+.val.bad{color:var(--red)}.val.ok{color:var(--grn)}
+.ac-alert{margin-top:10px;padding:9px;background:#FEF2F2;border-radius:8px;font-size:11px;color:var(--red);line-height:1.4;font-weight:600}
+.ac-note{margin-top:10px;padding:9px;background:#EFF6FF;border-radius:8px;font-size:11px;color:#1E40AF;line-height:1.4;font-weight:600}
+
+/* ── KPI CARDS ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.kc{background:#fff;border:1px solid var(--border-dark);border-radius:14px;padding:18px}
+.kc .big{font-size:26px;font-weight:900;color:var(--navy);line-height:1;font-family:'Montserrat',sans-serif}
+.kc .delta{font-size:11px;color:var(--grn);font-weight:700;margin:4px 0 6px}
+.kc .lbl{font-size:11px;color:#6B7280;font-weight:600}
+
+/* ── PROJECT CARDS ── */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:32px}
+.proj-card{border-radius:16px;overflow:hidden;border:1px solid var(--border-dark);background:#fff;display:flex;flex-direction:column}
+.proj-head{background:linear-gradient(135deg,var(--navy3),#0A2848);padding:22px 24px}
+.proj-head .proj-eyebrow{font-size:9px;font-weight:800;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
+.proj-head h3{font-size:16px;font-weight:900;color:#fff;margin-bottom:3px}
+.proj-head .proj-sub{font-size:11px;color:var(--w60)}
+.proj-body{padding:20px 24px;flex:1;display:flex;flex-direction:column;gap:14px}
+.proj-body p{font-size:12px;color:#6B7280;line-height:1.65}
+.proj-checks{display:flex;flex-direction:column;gap:7px}
+.proj-check{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--navy);font-weight:600}
+.proj-check-icon{width:18px;height:18px;border-radius:50%;background:rgba(22,163,74,.12);border:1px solid rgba(22,163,74,.3);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--grn);flex-shrink:0;margin-top:1px}
+.proj-btn{display:inline-flex;align-items:center;gap:7px;background:var(--navy);color:#fff;padding:10px 18px;border-radius:999px;font-size:12px;font-weight:800;text-decoration:none;transition:background .2s;align-self:flex-start;font-family:'Montserrat',sans-serif}
+.proj-btn:hover{background:var(--blue)}
+
+/* ── TOOL CARDS ── */
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;margin-bottom:32px}
+.tc{background:#fff;border:1px solid var(--border-dark);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.tc-head{background:linear-gradient(135deg,#0a2038,var(--navy));padding:14px 18px;display:flex;align-items:center;gap:10px}
+.tc-head i{font-size:20px;color:var(--gold)}
+.tc-head span{font-size:12px;font-weight:800;color:#fff;line-height:1.3}
+.tc-body{padding:16px 18px;flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:12px}
+.tc-body p{font-size:12px;color:#6B7280;line-height:1.6}
+.tc-link{display:inline-flex;align-items:center;gap:5px;color:var(--navy);font-size:12px;font-weight:800;text-decoration:none;border-top:1px solid rgba(14,60,102,.08);padding-top:10px;transition:color .2s}
+.tc-link:hover{color:var(--blue)}
+.tc.wip{opacity:.72}
+.wip-badge{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-top:3px}
+
+/* ── VISION BLOCK ── */
+.vision{background:linear-gradient(135deg,var(--navy3) 0%,#0A2848 100%);border-radius:16px;padding:36px 40px;border-left:5px solid var(--gold);margin-top:8px}
+.vision .vis-eyebrow{font-size:9px;font-weight:800;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+.vision h2{font-size:20px;font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;font-family:'Montserrat',sans-serif}
+.vision p{font-size:13px;color:var(--w60);line-height:1.75;max-width:620px}
+
+/* ── FOOTER ── */
+footer{background:var(--navy3);border-top:2px solid var(--gold);padding:22px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+footer strong{color:#fff;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:800}
+footer span{font-size:11px;color:rgba(255,255,255,.35);font-weight:600}
+
+html{scroll-behavior:smooth}
+@media(max-width:700px){
+  .mstrip{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:1fr 1fr}
+  .sec{padding:40px 20px}
+  .hero{padding:60px 20px 50px}
+  nav{flex-wrap:wrap}
+}
+</style>
+
+<nav>
+  <div class="nav-brand">AMI<span>TAI</span></div>
+  <div class="nav-links">
+    <a href="#diagnostico">Diagnóstico SEO</a>
+    <a href="#keywords">Keywords</a>
+    <a href="#competencia">Competencia</a>
+    <a href="#plan">Plan H2 2026</a>
+    <a href="#ads">Google Ads</a>
+    <a href="#kpis">KPIs</a>
+    <a href="#proyectos">Proyectos</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-geo" aria-hidden="true">
+    <div class="hero-arc1"></div><div class="hero-arc2"></div>
+    <div class="hero-dots"></div><div class="hero-streak"></div>
+    <div class="hero-goldline"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-pill"><span class="hero-pill-dot"></span>Dirección de Marketing · Mayo 2026</div>
+    <h1>¿Dónde estamos y<br><span class="gold">hacia dónde vamos?</span></h1>
+    <p>Diagnóstico del estado digital de AMITAI, análisis de competencia y plan de acción para el segundo semestre del año.</p>
+    <div class="hero-chips">
+      <span class="chip hl">Mayo 2026</span>
+      <span class="chip">amitai.com</span>
+      <span class="chip">+15 países</span>
+      <span class="chip">+25 años</span>
+      <span class="chip">ISO 27001</span>
+    </div>
+  </div>
+</div>
+
+<!-- METRICS STRIP -->
+<div class="mstrip">
+  <div class="mi"><div class="mi-num r">48/100</div><div class="mi-lbl">Puntuación SEO global</div></div>
+  <div class="mi"><div class="mi-num r">-27%</div><div class="mi-lbl">Tráfico orgánico México</div></div>
+  <div class="mi"><div class="mi-num r">3 URLs</div><div class="mi-lbl">Canibalización producto principal</div></div>
+  <div class="mi"><div class="mi-num r">0 Schema</div><div class="mi-lbl">Sin datos estructurados en el sitio</div></div>
+</div>
+
+<!-- DIAGNÓSTICO -->
+<div class="sec light" id="diagnostico">
+  <div class="eyebrow">Parte 1 · Diagnóstico</div>
+  <div class="sec-h">El sitio tiene el producto correcto — pero no lo comunica bien</div>
+  <div class="sec-sub">AMITAI tiene los activos más difíciles de replicar: 25 años, validación científica por país, millones de evaluaciones. El problema es que el sitio no los posiciona con la fuerza suficiente para competir digitalmente.</div>
+  <div class="score-grid">
+    <div class="sc"><div class="sc-ring"><svg viewBox="0 0 48 48"><circle class="trk" cx="24" cy="24" r="19"/><circle class="arc" cx="24" cy="24" r="19" stroke="#DC2626" stroke-dasharray="119" stroke-dashoffset="95"/></svg><div class="val" style="color:#DC2626">4</div></div><div><div class="sc-name">Meta títulos y descripciones</div><div class="sc-note">Sin keywords transaccionales</div></div></div>
+    <div class="sc"><div class="sc-ring"><svg viewBox="0 0 48 48"><circle class="trk" cx="24" cy="24" r="19"/><circle class="arc" cx="24" cy="24" r="19" stroke="#EA580C" stroke-dasharray="119" stroke-dashoffset="60"/></svg><div class="val" style="color:#EA580C">5</div></div><div><div class="sc-name">Estructura de URLs</div><div class="sc-note">Canibalización crítica ×3 URLs</div></div></div>
+    <div class="sc"><div class="sc-ring"><svg viewBox="0 0 48 48"><circle class="trk" cx="24" cy="24" r="19"/><circle class="arc" cx="24" cy="24" r="19" stroke="#EA580C" stroke-dasharray="119" stroke-dashoffset="60"/></svg><div class="val" style="color:#EA580C">5</div></div><div><div class="sc-name">Encabezados H1 / H2</div><div class="sc-note">Sin keywords en títulos principales</div></div></div>
+    <div class="sc"><div class="sc-ring"><svg viewBox="0 0 48 48"><circle class="trk" cx="24" cy="24" r="19"/><circle class="arc" cx="24" cy="24" r="19" stroke="#EA580C" stroke-dasharray="119" stroke-dashoffset="60"/></svg><div class="val" style="color:#EA580C">5</div></div><div><div class="sc-name">Contenido y palabras clave</div><div class="sc-note">Blog activo con problemas de indexación</div></div></div>
+    <div class="sc"><div class="sc-ring"><svg viewBox="0 0 48 48"><circle class="trk" cx="24" cy="24" r="19"/><circle class="arc" cx="24" cy="24" r="19" stroke="#DC2626" stroke-dasharray="119" stroke-dashoffset="95"/></svg><div class="val" style="color:#DC2626">4</div></div><div><div class="sc-name">Enlazado interno</div><div class="sc-note">Productos sin conexión entre sí</div></div></div>
+    <div class="sc"><div class="sc-ring"><svg viewBox="0 0 48 48"><circle class="trk" cx="24" cy="24" r="19"/><circle class="arc" cx="24" cy="24" r="19" stroke="#EA580C" stroke-dasharray="119" stroke-dashoffset="60"/></svg><div class="val" style="color:#EA580C">5</div></div><div><div class="sc-name">SEO técnico</div><div class="sc-note">Sin schema markup ni Open Graph</div></div></div>
+    <div class="sc"><div class="sc-ring"><svg viewBox="0 0 48 48"><circle class="trk" cx="24" cy="24" r="19"/><circle class="arc" cx="24" cy="24" r="19" stroke="#EA580C" stroke-dasharray="119" stroke-dashoffset="60"/></svg><div class="val" style="color:#EA580C">5</div></div><div><div class="sc-name">Experiencia de usuario</div><div class="sc-note">Sesión cayó de 53s a 25s</div></div></div>
+    <div class="sc"><div class="sc-ring"><svg viewBox="0 0 48 48"><circle class="trk" cx="24" cy="24" r="19"/><circle class="arc" cx="24" cy="24" r="19" stroke="#16A34A" stroke-dasharray="119" stroke-dashoffset="36"/></svg><div class="val" style="color:#16A34A">7</div></div><div><div class="sc-name">Autoridad de dominio</div><div class="sc-note">Diferenciadores técnicos sin comunicar</div></div></div>
+  </div>
+  <div class="alerts">
+    <div class="al crit"><span class="al-tag r">Urgente</span><h4>3 URLs compiten por el mismo producto</h4><p>Honestidad aparece en tres URLs distintas. Google distribuye la autoridad entre todas — ninguna rankea bien.</p></div>
+    <div class="al crit"><span class="al-tag r">Urgente</span><h4>México perdió -27% de tráfico orgánico</h4><p>El mercado principal está siendo captado por MIDOT y Psicotest. Sin corrección en julio, la tendencia se profundiza en H2.</p></div>
+    <div class="al crit"><span class="al-tag r">Urgente</span><h4>No hay landing page por producto</h4><p>MIDOT tiene URL, keywords y CTA dedicados por cada solución. AMITAI no — cada producto sin landing es tráfico y conversiones perdidas.</p></div>
+    <div class="al warn"><span class="al-tag o">Importante</span><h4>Blog con problemas de indexación</h4><p>El contenido existe pero Google no lo está procesando correctamente. El blog no está contribuyendo al posicionamiento orgánico.</p></div>
+    <div class="al warn"><span class="al-tag o">Importante</span><h4>Diferenciadores técnicos sin comunicar</h4><p>Validación científica por país y 25+ años de trayectoria no aparecen donde influyen en la decisión de compra.</p></div>
+    <div class="al good"><span class="al-tag g">Oportunidad</span><h4>LATAM crece con fuerza</h4><p>Ecuador +121%, Rep. Dominicana +433%, Bolivia +720%. Mercados en ascenso sin landings localizadas — capitalizable de inmediato.</p></div>
+  </div>
+</div>
+
+<!-- KEYWORDS -->
+<div class="sec" id="keywords">
+  <div class="eyebrow">Parte 1 · SEO</div>
+  <div class="sec-h">Dónde está el potencial de búsqueda</div>
+  <div class="sec-sub">Keywords de alta intención donde AMITAI debería dominar y actualmente no posiciona suficientemente.</div>
+  <div style="overflow-x:auto;border-radius:10px;border:1px solid rgba(14,60,102,.1)">
+  <table class="kw-tbl">
+    <thead><tr><th>Palabra clave</th><th>Presencia</th><th>Potencial</th><th>Página destino</th></tr></thead>
+    <tbody>
+      <tr><td>evaluación de honestidad para empresas</td><td><span class="tag m">Media</span></td><td><span class="stars">★★★★★</span></td><td>/es/honestidad-test/</td></tr>
+      <tr><td>prueba de integridad laboral México</td><td><span class="tag b">Baja</span></td><td><span class="stars">★★★★★</span></td><td>/es/evaluacion-honestidad/</td></tr>
+      <tr><td>riesgo humano en contratación</td><td><span class="tag b">Baja</span></td><td><span class="stars">★★★★★</span></td><td>Home / Honestidad</td></tr>
+      <tr><td>test de honestidad para selección de personal</td><td><span class="tag m">Media</span></td><td><span class="stars">★★★★★</span></td><td>/es/pre-employment-screening/</td></tr>
+      <tr><td>prevención de fraude interno empresas</td><td><span class="tag n">Muy baja</span></td><td><span class="stars">★★★★</span></td><td>Blog / Honestidad</td></tr>
+      <tr><td>evaluación de integridad LATAM</td><td><span class="tag b">Baja</span></td><td><span class="stars">★★★★★</span></td><td>Home / Nosotros</td></tr>
+      <tr><td>compliance empresarial México</td><td><span class="tag n">Muy baja</span></td><td><span class="stars">★★★★</span></td><td>Blog / E-Thics Learning</td></tr>
+      <tr><td>prueba de honestidad vs polígrafo</td><td><span class="tag n">Sin presencia</span></td><td><span class="stars">★★★★</span></td><td>Blog (artículo nuevo)</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- COMPETENCIA -->
+<div class="sec dark" id="competencia">
+  <div class="eyebrow">Parte 2 · Mercado</div>
+  <div class="sec-h">El campo de batalla digital</div>
+  <div class="sec-sub">Segmento: Integridad / Honestidad / Riesgo Humano · LATAM. MIDOT y Psicotest son los competidores que más tráfico están capturando en las keywords de mayor valor.</div>
+  <div class="comp-grid">
+    <div class="cc"><h4>MIDOT LATAM</h4><p>40+ años, landing por producto, ROI con datos concretos, blog activo</p><span class="threat a">Amenaza alta</span></div>
+    <div class="cc"><h4>Psicotest.mx</h4><p>Suite psicométrica con IA, plataforma moderna, posicionamiento sólido en MX</p><span class="threat a">Amenaza alta en MX</span></div>
+    <div class="cc"><h4>Emptor</h4><p>Background checks con IA, blog de alto valor, clientes tech visibles</p><span class="threat m">Amenaza media</span></div>
+    <div class="cc"><h4>RHCheck LATAM</h4><p>Background check LATAM, blog emergente bien orientado</p><span class="threat m">Amenaza media</span></div>
+    <div class="cc"><h4>Integritas LATAM</h4><p>Consultoría Ecuador/LATAM, presencia digital limitada</p><span class="threat b">Amenaza baja</span></div>
+    <div class="cc"><h4>ARCH / Sterling / First Advantage</h4><p>Globales. Alta autoridad en inglés, baja presencia en español LATAM</p><span class="threat m">Amenaza media</span></div>
+  </div>
+</div>
+
+<!-- PLAN INTRO -->
+<div class="plan-intro" id="plan">
+  <div class="eyebrow">Parte 3 · Hoja de ruta</div>
+  <div class="sec-h">De aquí a diciembre: lo que hay que hacer y en qué orden</div>
+  <div class="sec-sub">5 frentes de trabajo para recuperar México, capitalizar LATAM y construir una presencia digital que refleje la autoridad real de AMITAI en el mercado.</div>
+</div>
+
+<div class="steps">
+  <div class="step"><div class="step-num">01</div><i class="ti ti-world step-icon" aria-hidden="true"></i><div class="step-title">Base digital y SEO</div><div class="step-desc">Corregir arquitectura del sitio, crear landings por producto y posicionarse en IA como ChatGPT y Perplexity.</div></div>
+  <div class="step"><div class="step-num">02</div><i class="ti ti-writing step-icon" aria-hidden="true"></i><div class="step-title">Contenido y autoridad</div><div class="step-desc">Blog mensual, estudio de datos propios, diagnósticos de honestidad, casos de éxito y newsletter B2B.</div></div>
+  <div class="step"><div class="step-num">03</div><i class="ti ti-brand-linkedin step-icon" aria-hidden="true"></i><div class="step-title">Redes sociales</div><div class="step-desc">Impulsar difusión y presencia de Fernando en redes de Linkedin, apoyarse en temática del mes y newsletter para campañas y generación de podcast y lives..</div></div>
+  <div class="step"><div class="step-num">04</div><i class="ti ti-ad step-icon" aria-hidden="true"></i><div class="step-title">Google Ads</div><div class="step-desc">Corregir el funnel, pausar campañas sin landing y recuperar ROI positivo.</div></div>
+  <div class="step"><div class="step-num">05</div><i class="ti ti-briefcase step-icon" aria-hidden="true"></i><div class="step-title">Habilitación comercial</div><div class="step-desc">Actualizar el Brandcenter con fichas técnicas, deck, comparativo vs. competencia y material de diagnósticos.</div><a href="https://sites.google.com/amitai.com/brandcenter/inicio?authuser=0" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:4px;background:var(--navy);color:#fff;padding:6px 12px;border-radius:999px;font-size:10px;font-weight:800;text-decoration:none;width:fit-content;transition:background .2s">Ir al Brandcenter <i class="ti ti-external-link" style="font-size:11px" aria-hidden="true"></i></a></div>
+</div>
+
+<div class="sec">
+  <div class="eyebrow" style="margin-bottom:16px">Hoja de ruta · Mes a mes</div>
+  <div class="rm-wrap">
+  <table class="rm">
+    <thead><tr><th>Pilar</th><th>Jul</th><th>Ago</th><th>Sep</th><th>Oct</th><th>Nov</th><th>Dic</th></tr></thead>
+    <tbody>
+      <tr><td>01 · Base digital y SEO</td><td><span class="done">Correctivos ✓</span></td><td><span class="act">Landing Ecuador</span></td><td><span class="act">Landing R. Dom.</span></td><td><span class="act">Landing Bolivia</span></td><td><span class="act">Landing Guatemala</span></td><td><span class="act">Landing El Salvador</span></td></tr>
+      <tr><td>02 · Contenido y autoridad</td><td><span class="act">Indexación + Art. 1</span></td><td><span class="act">Art. 2 + Diagnósticos</span></td><td><span class="act">Art. 3 + Estudio datos</span></td><td><span class="act">Art. 4 + Casos éxito</span></td><td><span class="act">Art. 5 + Guía</span></td><td><span class="act">Art. 6 + Reporte</span></td></tr>
+      <tr><td>02 · Newsletter</td><td><span class="act">Julio</span></td><td><span class="act">Agosto</span></td><td><span class="act">Septiembre</span></td><td><span class="act">Octubre</span></td><td><span class="act">Noviembre</span></td><td><span class="act">Diciembre</span></td></tr>
+      <tr><td>03 · Redes sociales</td><td><span class="act">Arranque editorial</span></td><td><span class="act">LinkedIn + TikTok</span></td><td><span class="low">Casos de uso TikTok</span></td><td><span class="low">Videos Synthesia</span></td><td><span class="low">Campaña fin de año</span></td><td><span class="low">Balance 2026</span></td></tr>
+      <tr><td>04 · Google Ads</td><td><span class="act">Auditoría + pausas</span></td><td><span class="act">Nuevas campañas</span></td><td><span class="act">Optimización</span></td><td><span class="low">Seguimiento LATAM</span></td><td><span class="low">Ajuste Q4</span></td><td><span class="low">Benchmarks 2027</span></td></tr>
+      <tr><td>05 · Brandcenter</td><td>—</td><td><span class="act">Fichas + deck</span></td><td><span class="act">Comparativo</span></td><td><span class="act">Casos de éxito</span></td><td><span class="low">Material diagnósticos</span></td><td>—</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- ADS -->
+<div class="sec light" id="ads">
+  <div class="eyebrow">Parte 4 · Medios pagados</div>
+  <div class="sec-h">Google Ads — Estado actual y contexto histórico</div>
+  <div class="sec-sub">El foco del H2 es corregir el funnel y reducir el CPLQ — no incrementar inversión hasta tener las landing pages listas.</div>
+
+  <div class="eyebrow" style="margin-bottom:10px">Histórico ROI · Enero 2025 – Abril 2026</div>
+  <div style="overflow-x:auto;border-radius:10px;border:1px solid rgba(14,60,102,.1);margin-bottom:32px">
+  <table class="roi-tbl">
+    <thead><tr><th>Mes</th><th>Inversión</th><th>Ventas</th><th>ROI %</th><th>Contactos</th><th>Leads reales</th><th>Prospectados</th><th>Cerrados</th><th>CPL</th><th>% Prosp.</th><th>% Conv.</th></tr></thead>
+    <tbody>
+      <tr class="sub-head"><td colspan="11">PRIMER PERIODO · H1 2025 — ROI sostenido positivo</td></tr>
+      <tr><td>Enero 2025</td><td>$61,742</td><td>$44,584</td><td class="neg">-27.8</td><td>57</td><td>—</td><td>29</td><td>3</td><td>—</td><td>50.9%</td><td>5.3%</td></tr>
+      <tr><td>Febrero 2025</td><td>$50,538</td><td>$148,868</td><td class="pos">194.6</td><td>69</td><td>—</td><td>21</td><td>4</td><td>—</td><td>30.4%</td><td>5.8%</td></tr>
+      <tr><td>Marzo 2025</td><td>$39,070</td><td>$88,200</td><td class="pos">125.8</td><td>78</td><td>—</td><td>21</td><td>5</td><td>—</td><td>26.9%</td><td>6.4%</td></tr>
+      <tr><td>Abril 2025</td><td>$37,270</td><td>$173,238</td><td class="pos">364.8</td><td>44</td><td>—</td><td>18</td><td>4</td><td>—</td><td>40.9%</td><td>9.1%</td></tr>
+      <tr><td>Mayo 2025</td><td>$35,331</td><td>$44,469</td><td class="pos">25.9</td><td>118</td><td>—</td><td>19</td><td>3</td><td>—</td><td>16.1%</td><td>2.5%</td></tr>
+      <tr><td>Junio 2025</td><td>$34,732</td><td>$76,194</td><td class="pos">119.4</td><td>167</td><td>—</td><td>25</td><td>6</td><td>—</td><td>15.0%</td><td>3.6%</td></tr>
+      <tr><td>Julio 2025</td><td>$34,957</td><td>$151,593</td><td class="pos">333.7</td><td>162</td><td>—</td><td>23</td><td>5</td><td>—</td><td>14.2%</td><td>3.1%</td></tr>
+      <tr><td>Agosto 2025</td><td>$29,258</td><td>$187,975</td><td class="pos">542.5</td><td>128</td><td>—</td><td>25</td><td>3</td><td>—</td><td>19.5%</td><td>2.3%</td></tr>
+      <tr class="avg-pos"><td>Promedio H1 2025</td><td>$40,362</td><td>$114,390</td><td class="pos">210</td><td>103</td><td>—</td><td>23</td><td>4</td><td>—</td><td>26.7%</td><td>4.8%</td></tr>
+      <tr class="sub-head"><td colspan="11">SEGUNDO PERIODO · H2 2025 – H1 2026 — Caída sostenida</td></tr>
+      <tr><td>Septiembre 2025</td><td>$32,996</td><td>$38,355</td><td class="pos">16.2</td><td>50</td><td>17</td><td>1</td><td>3</td><td>$1,941</td><td>2.0%</td><td>6.0%</td></tr>
+      <tr><td>Octubre 2025</td><td>$42,006</td><td>$43,780</td><td class="pos">4.2</td><td>98</td><td style="color:var(--grn);font-weight:700">63</td><td>33</td><td>10</td><td class="pos">$667</td><td>33.7%</td><td>10.2%</td></tr>
+      <tr><td>Noviembre 2025</td><td>$40,888</td><td>$2,300</td><td class="neg">-94.4</td><td>71</td><td>44</td><td>7</td><td>1</td><td>$929</td><td>9.9%</td><td>1.4%</td></tr>
+      <tr><td>Diciembre 2025</td><td>$35,252</td><td>$24,300</td><td class="neg">-31.1</td><td>77</td><td>46</td><td>19</td><td>1</td><td>$766</td><td>24.7%</td><td>1.3%</td></tr>
+      <tr><td>Enero 2026</td><td>$43,693</td><td>$33,565</td><td class="neg">-23.2</td><td>109</td><td>45</td><td>29</td><td>2</td><td>$971</td><td>26.6%</td><td>1.8%</td></tr>
+      <tr><td>Febrero 2026</td><td>$20,153</td><td>$20,665</td><td class="pos">2.5</td><td>99</td><td>49</td><td>14</td><td>2</td><td class="pos">$411</td><td>14.1%</td><td>2.0%</td></tr>
+      <tr><td>Marzo 2026</td><td>$38,708</td><td>—</td><td class="neg">-100.0</td><td>136</td><td>53</td><td>17</td><td>0</td><td>$730</td><td>12.5%</td><td>0.0%</td></tr>
+      <tr><td>Abril 2026</td><td>$39,461</td><td>$34,765</td><td class="neg">-5.4</td><td>108</td><td style="color:var(--ora);font-weight:700">31</td><td>10</td><td>3</td><td class="neg">$1,273</td><td>9.3%</td><td>2.8%</td></tr>
+      <tr class="avg-neg"><td>Promedio actual</td><td>$36,645</td><td>$24,716</td><td class="neg">-29</td><td>94</td><td>44</td><td>16</td><td>3</td><td class="neg">$836</td><td>16.6%</td><td>3.2%</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="eyebrow" style="margin-bottom:16px">Detalle por mercado · Abril 2026</div>
+  <div class="ads-grid">
+    <div class="ac"><div class="ac-head">México</div><div class="ac-body">
+      <div class="ac-row"><span class="lbl">Inversión</span><span class="val">$39,461</span></div>
+      <div class="ac-row"><span class="lbl">Leads cualificados</span><span class="val ok">31</span></div>
+      <div class="ac-row"><span class="lbl">CPLQ</span><span class="val bad">$1,273</span></div>
+      <div class="ac-row"><span class="lbl">CTR</span><span class="val">3.00%</span></div>
+      <div class="ac-row"><span class="lbl">Ventas cerradas</span><span class="val ok">1</span></div>
+      <div class="ac-note">Funnel más maduro. Problema en conversión post-clic, no en tráfico.</div>
+    </div></div>
+    <div class="ac"><div class="ac-head">Ecuador</div><div class="ac-body">
+      <div class="ac-row"><span class="lbl">Inversión</span><span class="val">$5,291</span></div>
+      <div class="ac-row"><span class="lbl">Leads cualificados</span><span class="val bad">2</span></div>
+      <div class="ac-row"><span class="lbl">CPL</span><span class="val ok">$176</span></div>
+      <div class="ac-row"><span class="lbl">CTR</span><span class="val ok">4.51%</span></div>
+      <div class="ac-row"><span class="lbl">CPC promedio</span><span class="val ok">$0.38</span></div>
+      <div class="ac-note">Eficiente en tráfico. Problema en cualificación de leads.</div>
+    </div></div>
+    <div class="ac"><div class="ac-head">Colombia</div><div class="ac-body">
+      <div class="ac-row"><span class="lbl">Inversión</span><span class="val">$6,082</span></div>
+      <div class="ac-row"><span class="lbl">Leads cualificados</span><span class="val">6</span></div>
+      <div class="ac-row"><span class="lbl">CPLQ</span><span class="val ok">$1,014</span></div>
+      <div class="ac-row"><span class="lbl">CTR</span><span class="val">2.89%</span></div>
+      <div class="ac-row"><span class="lbl">Ventas cerradas</span><span class="val bad">0</span></div>
+      <div class="ac-note">CPLQ más eficiente. Sin avance a oportunidades ni cierre.</div>
+    </div></div>
+    <div class="ac"><div class="ac-head">Integri-Line</div><div class="ac-body">
+      <div class="ac-row"><span class="lbl">Inversión</span><span class="val">$14,876</span></div>
+      <div class="ac-row"><span class="lbl">Leads totales</span><span class="val bad">1</span></div>
+      <div class="ac-row"><span class="lbl">CPL</span><span class="val bad">$14,876</span></div>
+      <div class="ac-row"><span class="lbl">Conversión</span><span class="val bad">0.03%</span></div>
+      <div class="ac-row"><span class="lbl">CTR</span><span class="val">4.4%</span></div>
+      <div class="ac-alert">Recomendación: evaluar configuración y cantidad de inversión.</div>
+    </div></div>
+    <div class="ac"><div class="ac-head">Guatemala</div><div class="ac-body">
+      <div class="ac-row"><span class="lbl">Inversión</span><span class="val">$3,013</span></div>
+      <div class="ac-row"><span class="lbl">Clics</span><span class="val ok">10,001</span></div>
+      <div class="ac-row"><span class="lbl">CTR</span><span class="val ok">5.28%</span></div>
+      <div class="ac-row"><span class="lbl">CPC</span><span class="val ok">$0.30</span></div>
+      <div class="ac-note">Mercado más eficiente del grupo LATAM.</div>
+    </div></div>
+    <div class="ac"><div class="ac-head">El Salvador</div><div class="ac-body">
+      <div class="ac-row"><span class="lbl">Inversión</span><span class="val">$3,042</span></div>
+      <div class="ac-row"><span class="lbl">Clics</span><span class="val ok">11,759</span></div>
+      <div class="ac-row"><span class="lbl">CTR</span><span class="val">4.16%</span></div>
+      <div class="ac-row"><span class="lbl">CPC</span><span class="val ok">$0.37</span></div>
+      <div class="ac-note">Mayor volumen de clics del grupo. CPC competitivo.</div>
+    </div></div>
+    <div class="ac"><div class="ac-head">Rep. Dominicana</div><div class="ac-body">
+      <div class="ac-row"><span class="lbl">Inversión</span><span class="val">$2,565</span></div>
+      <div class="ac-row"><span class="lbl">Clics</span><span class="val">1,299</span></div>
+      <div class="ac-row"><span class="lbl">CTR</span><span class="val bad">2.21%</span></div>
+      <div class="ac-row"><span class="lbl">CPC</span><span class="val bad">$1.97</span></div>
+      <div class="ac-alert">Desempeño más bajo. Requiere optimización de segmentación y creativos.</div>
+    </div></div>
+  </div>
+</div>
+
+<!-- KPIs -->
+<div class="sec light" id="kpis">
+  <div class="eyebrow">Parte 5 · Resultados esperados</div>
+  <div class="sec-h">¿Cómo sabremos que vamos bien?</div>
+  <div class="sec-sub">Métricas de éxito al cierre de diciembre 2026, frente al estado actual.</div>
+  <div class="kpi-grid">
+    <div class="kc"><div class="big">40,000</div><div class="delta">↑ desde 33,700</div><div class="lbl">Seguidores LinkedIn</div></div>
+    <div class="kc"><div class="big">+50%</div><div class="delta">↑ desde ~31/mes</div><div class="lbl">Leads cualificados México</div></div>
+    <div class="kc"><div class="big">-30%</div><div class="delta">↓ desde $1,273</div><div class="lbl">CPLQ México</div></div>
+    <div class="kc"><div class="big">+60%</div><div class="delta">↑ desde 25 segundos</div><div class="lbl">Tiempo de sesión</div></div>
+    <div class="kc"><div class="big">10</div><div class="delta">↑ desde 1 activa</div><div class="lbl">Landings de producto activas</div></div>
+    <div class="kc"><div class="big">6</div><div class="delta">↑ desde 0 publicados</div><div class="lbl">Artículos de blog</div></div>
+    <div class="kc"><div class="big">+10%</div><div class="delta">vs. tendencia -27%</div><div class="lbl">Tráfico orgánico México</div></div>
+    <div class="kc"><div class="big">≥3 meses</div><div class="delta">vs. ROI negativo actual</div><div class="lbl">ROI positivo Google Ads</div></div>
+  </div>
+</div>
+
+<!-- PROYECTOS -->
+<div class="sec dark" id="proyectos">
+  <div class="eyebrow">Parte 6 · Proyectos en marcha</div>
+  <div class="sec-h">Lo que ya está construido</div>
+  <div class="sec-sub">El diagnóstico y el plan no parten de cero. Hay proyectos activos que ya materializan la dirección estratégica — y que hoy representan ventajas concretas frente a la competencia.</div>
+  <div class="proj-grid">
+    <div class="proj-card">
+      <div class="proj-head"><div class="proj-eyebrow">Proyecto activo 01</div><h3>Framework Web AMITAI</h3><div class="proj-sub">Arquitectura digital · En desarrollo</div></div>
+      <div class="proj-body">
+        <p>El framework es la columna vertebral de la presencia digital: define cómo se organiza el sitio, cómo se conectan los productos y cómo se captura y convierte el tráfico. No es un rediseño cosmético — es la estructura que hace posible todo lo que plantea este plan.</p>
+        <div class="proj-checks">
+          <div class="proj-check"><div class="proj-check-icon">✓</div><span>Arquitectura de URLs y landings por producto definida</span></div>
+          <div class="proj-check"><div class="proj-check-icon">✓</div><span>Flujos de conversión y CTAs por segmento de mercado</span></div>
+          <div class="proj-check"><div class="proj-check-icon">✓</div><span>Base técnica para posicionamiento en buscadores e IA</span></div>
+          <div class="proj-check"><div class="proj-check-icon">✓</div><span>Escalable a todos los mercados LATAM</span></div>
+        </div>
+        <a href="https://www.amitai.com/es/frame-work-web-amitai/" class="proj-btn">Ver framework →</a>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-head"><div class="proj-eyebrow">Proyecto activo 02</div><h3>Renovación de identidad AMITAI Latinoamérica</h3><div class="proj-sub">Branding estratégico · En desarrollo</div></div>
+      <div class="proj-body">
+        <p>AMITAI tiene 25 años de historia y opera en más de 15 países. La renovación de identidad no cambia quiénes somos — actualiza cómo nos perciben. Es la condición para que todo el contenido, las campañas y las landings comuniquen con la misma fuerza.</p>
+        <div class="proj-checks">
+          <div class="proj-check"><div class="proj-check-icon">✓</div><span>Sistema visual unificado para todos los mercados LATAM</span></div>
+          <div class="proj-check"><div class="proj-check-icon">✓</div><span>Activos listos para campañas digitales, redes y materiales de venta</span></div>
+          <div class="proj-check"><div class="proj-check-icon">✓</div><span>Narrativa de marca alineada al posicionamiento de riesgo humano</span></div>
+          <div class="proj-check"><div class="proj-check-icon">✓</div><span>Base para el Brandcenter y toda la habilitación comercial</span></div>
+        </div>
+        <a href="https://www.amitai.com/es/amitai-latinoamerica/" class="proj-btn">Ver proyecto →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="eyebrow" style="margin-bottom:12px">Herramientas realizadas</div>
+  <div style="font-size:13px;color:var(--w60);margin-bottom:20px;max-width:560px;line-height:1.6">Recursos digitales ya disponibles para dar consistencia, velocidad y control a la operación comercial y de marca.</div>
+  <div class="tool-grid">
+    <div class="tc">
+      <div class="tc-head"><i class="ti ti-file-description" aria-hidden="true"></i><span>Generador de propuestas comerciales</span></div>
+      <div class="tc-body"><p>Automatiza la generación de propuestas con información actualizada de cada producto. El equipo comercial presenta con consistencia — sin depender de versiones desactualizadas.</p><a href="https://www.amitai.com/es/generador-de-propuestas-comerciales/" class="tc-link">Abrir herramienta <i class="ti ti-external-link" style="font-size:13px" aria-hidden="true"></i></a></div>
+    </div>
+    <div class="tc">
+      <div class="tc-head"><i class="ti ti-mail-forward" aria-hidden="true"></i><span>Generador de mail outbound</span></div>
+      <div class="tc-body"><p>Provee al equipo comunicación outbound estructurada y alineada al tono de marca. Controla la narrativa desde el primer contacto y reduce la improvisación en prospección.</p><a href="https://www.amitai.com/es/generador-de-mail-comercial/" class="tc-link">Abrir herramienta <i class="ti ti-external-link" style="font-size:13px" aria-hidden="true"></i></a></div>
+    </div>
+    <div class="tc">
+      <div class="tc-head"><i class="ti ti-signature" aria-hidden="true"></i><span>Generador de firmas</span></div>
+      <div class="tc-body"><p>Unifica la firma de correo de todos los colaboradores bajo un mismo estándar visual. Cada email enviado refuerza la identidad de marca — sin esfuerzo adicional del equipo.</p><a href="https://www.amitai.com/es/generador-de-firmas-amitai/" class="tc-link">Abrir herramienta <i class="ti ti-external-link" style="font-size:13px" aria-hidden="true"></i></a></div>
+    </div>
+    <div class="tc wip">
+      <div class="tc-head"><i class="ti ti-layout-list" aria-hidden="true"></i><div><span>Generador de hoja de venta</span><div class="wip-badge">En proceso</div></div></div>
+      <div class="tc-body"><p>Generará hojas de venta actualizadas por producto con un clic, listas para enviar a prospectos o visitas comerciales. Elimina la dependencia de archivos manuales.</p><span class="tc-link" style="cursor:default;color:rgba(255,255,255,.3)">Próximamente <i class="ti ti-clock" style="font-size:13px" aria-hidden="true"></i></span></div>
+    </div>
+  </div>
+
+  <div class="vision">
+    <div class="vis-eyebrow">Visión H2 2026</div>
+    <h2>AMITAI tiene el producto, la trayectoria y el equipo.<br>Lo que viene es hacer que el mundo digital lo refleje.</h2>
+    <p>El diagnóstico es claro, los proyectos están en marcha y el plan tiene fechas concretas. Este semestre es la oportunidad de convertir 25 años de autoridad real en liderazgo digital visible — y posicionar a AMITAI donde debe estar: como la referencia en integridad y riesgo humano en Latinoamérica.</p>
+  </div>
+</div>
+
+<footer>
+  <strong>AMITAI® · Managing risks, the right way</strong>
+  <span>Diagnóstico Digital & Plan de Marketing · Mayo 2026 · Uso interno</span>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<script>
+const links=document.querySelectorAll('.nav-links a');
+const ids=['diagnostico','keywords','competencia','plan','ads','kpis','proyectos'];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  ids.forEach(id=>{const el=document.getElementById(id);if(el&&window.scrollY>=el.offsetTop-90)cur=id;});
+  links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+cur));
+});
+</script>
